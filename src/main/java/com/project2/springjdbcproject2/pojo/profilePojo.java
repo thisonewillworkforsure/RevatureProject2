@@ -1,6 +1,6 @@
 package com.project2.springjdbcproject2.pojo;
 
-public class profilePojo {
+public class ProfilePojo extends PojoBase {
 
 	private int profileID;
 	private int userID;
@@ -8,11 +8,11 @@ public class profilePojo {
 	private String firstName;
 	private String lastName;
 	private String description;
-	public profilePojo() {
+	public ProfilePojo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public profilePojo(int profileID, int userID, String iconImg, String firstName, String lastName,
+	public ProfilePojo(int profileID, int userID, String iconImg, String firstName, String lastName,
 			String description) {
 		super();
 		this.profileID = profileID;

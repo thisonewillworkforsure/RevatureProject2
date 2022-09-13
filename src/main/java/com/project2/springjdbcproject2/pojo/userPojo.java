@@ -1,24 +1,22 @@
 package com.project2.springjdbcproject2.pojo;
 
-public class userPojo {
+public class UserPojo {
 	private int userID;
 	private int typeID;
 	private String userName;
 	private String userPassword;
 	private int statusID;
-	private int profileID;
-	public userPojo() {
+	public UserPojo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public userPojo(int userID, int typeID, String userName, String userPassword, int statusID, int profileID) {
+	public UserPojo(int userID, int typeID, String userName, String userPassword, int statusID) {
 		super();
 		this.userID = userID;
 		this.typeID = typeID;
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.statusID = statusID;
-		this.profileID = profileID;
 	}
 	public int getUserID() {
 		return userID;
@@ -50,16 +48,11 @@ public class userPojo {
 	public void setStatusID(int statusID) {
 		this.statusID = statusID;
 	}
-	public int getProfileID() {
-		return profileID;
-	}
-	public void setProfileID(int profileID) {
-		this.profileID = profileID;
-	}
+
 	@Override
 	public String toString() {
 		return "userPojo [userID=" + userID + ", typeID=" + typeID + ", userName=" + userName + ", userPassword="
-				+ userPassword + ", statusID=" + statusID + ", profileID=" + profileID + "]";
+				+ userPassword + ", statusID=" + statusID + ", profileID=" + "]";
 	}
 	
 	
