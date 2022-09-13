@@ -20,7 +20,7 @@ public class DBUtil {
 	}
 	
 	static Connection makeConnection() throws ApplicationException {
-		String urlString = "jdbc:postgresql://localhost:5432/bank";
+		String urlString = "jdbc:postgresql://localhost:5432/umbrella";
 		String userString = "postgres";
 		String passwordString = "dataword622";
 		
