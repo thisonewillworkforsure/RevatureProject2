@@ -1,6 +1,7 @@
 package com.project2.springjdbcproject2.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,9 +52,31 @@ public class AccountDaoUserImp implements AccountDao {
 	}
 
 	@Override
-	public UserPojo createAccount(UserPojo accountPojo) throws ApplicationException {
+	public UserPojo createAccount(UserPojo userPojo) throws ApplicationException {
 		// TODO Auto-generated method stub
-		return null;
+		logger.info("Invoking Create Account in AccountDaoUserImp");
+		try {
+			Connection connection = DBUtil.makeConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users(type_id,status_id,user_name,user_password) VALUES(?,?,?,?)",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, userPojo.getTypeID());
+			preparedStatement.setInt(2, userPojo.getStatusID());
+			preparedStatement.setString(3, userPojo.getUserName());
+			preparedStatement.setString(4, userPojo.getUserPassword());
+			
+			int rowsUpdated = preparedStatement.executeUpdate();
+			
+			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			if(rowsUpdated == 0) return null;
+			while(resultSet.next()) {
+				userPojo.setUserID(resultSet.getInt("user_id"));
+			}
+			return userPojo;
+		} catch (SQLException e) {
+			// TODO: handle exception
+			throw new ApplicationException("There was an sql exception, please try again");
+		}
+		
 	}
 
 	@Override
