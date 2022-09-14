@@ -1,6 +1,6 @@
 package com.project2.springjdbcproject2.pojo;
 
-public class ProfilePojo extends PojoBase {
+public class ProfilePojo  {
 
 	private int profileID;
 	private int userID;

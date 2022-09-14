@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import com.project2.springjdbcproject2.SpringJdbcProject2Application;
 import com.project2.springjdbcproject2.exception.ApplicationException;
-import com.project2.springjdbcproject2.pojo.PojoBase;
 import com.project2.springjdbcproject2.pojo.UserPojo;
 
 
@@ -21,20 +20,18 @@ public class AccountDaoUserImp implements AccountDao {
 	private static final Logger logger = LoggerFactory.getLogger(SpringJdbcProject2Application.class); 
 	
 	@Override
-	public List<PojoBase> getAllAccount() throws ApplicationException {
+	public List<UserPojo> getAllAccount() throws ApplicationException {
 		// TODO Auto-generated method stub
 		logger.info("Invoking getAllAccount in dao layer");
 		try {
 			Connection newConnection = DBUtil.makeConnection();
 			Statement statement = newConnection.createStatement();
-
-			String queryString = "SELECT account.id,account.first_name,account.last_name,account.password,account.balance,account.user_name FROM account LEFT OUTER JOIN closed_account ON closed_account.account_id = account.id WHERE closed_account.closed_date IS NULL;";
-			String actualString = "SELECT * FROM account";
+			String actualString = "SELECT * FROM users";
 			
 			
 			
-			ResultSet resultSet = statement.executeQuery(queryString);
-			List<PojoBase> userPojos = new ArrayList<PojoBase>();
+			ResultSet resultSet = statement.executeQuery(actualString);
+			List<UserPojo> userPojos = new ArrayList<UserPojo>();
 
 			while (resultSet.next()) {
 				UserPojo temPojo = new UserPojo();
@@ -43,7 +40,7 @@ public class AccountDaoUserImp implements AccountDao {
 				temPojo.setTypeID(resultSet.getInt("type_id"));
 				temPojo.setUserName(resultSet.getString("user_name"));
 				temPojo.setUserName(resultSet.getString("user_password"));
-				//userPojos.add((PojoBase)temPojo);
+				userPojos.add(temPojo);
 			}
 			return userPojos;
 
@@ -54,25 +51,25 @@ public class AccountDaoUserImp implements AccountDao {
 	}
 
 	@Override
-	public PojoBase createAccount(PojoBase accountPojo) throws ApplicationException {
+	public UserPojo createAccount(UserPojo accountPojo) throws ApplicationException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PojoBase updateAccount(PojoBase accountPojo) throws ApplicationException {
+	public UserPojo updateAccount(UserPojo accountPojo) throws ApplicationException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteAccount(PojoBase accountPojo) throws ApplicationException {
+	public void deleteAccount(UserPojo accountPojo) throws ApplicationException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public PojoBase getOneAccount(PojoBase accountPojo) throws ApplicationException {
+	public UserPojo getOneAccount(UserPojo accountPojo) throws ApplicationException {
 		// TODO Auto-generated method stub
 		return null;
 	}
